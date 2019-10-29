@@ -1,0 +1,59 @@
+version: '3.7'
+
+services:
+        php:
+                build: './php/'
+                networks: 
+                        - backend
+                volumes: 
+                        - type: volume
+                          source: public_html
+                          target: ${WEB_DESTINATION_PATH}
+                environment:
+                        - DB_NAME=${DB_NAME}
+                        - DB_USER=${DB_USER}
+                        - DB_PASSWORD=${DB_PASSWORD}
+                        - DB_HOST=${DB_HOST}
+
+        apache: 
+                build: './apache/'
+                depends_on: 
+                        - php
+                hostname: hecticgames.com
+                networks: 
+                        - frontend
+                        - backend
+                          #- dedsec
+                ports: 
+                        - "80:80"
+                volumes: 
+                        - type: volume
+                          source: public_html
+                          target: ${WEB_DESTINATION_PATH}
+        dedsec:
+                build: './dedsec/'
+                tty: true
+                container_name: samsepi0l 
+                hostname: dedsec
+                networks:
+                        - dedsec
+                ports:
+                        - "49154:22"
+ 
+volumes:
+        public_html:
+                driver: local
+                driver_opts:
+                        type: none 
+                        device: ${WEB_APP_PATH}
+                        o: 'bind'
+
+networks: 
+       frontend:
+               driver: bridge
+
+                       
+       backend:
+               driver: bridge
+       dedsec:
+               driver: bridge 

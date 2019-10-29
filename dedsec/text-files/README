@@ -1,0 +1,22 @@
+Operation Slowloris:
+
+Our intention is to take down EPIC GAME's website to prevent other's for falling victim to their spyware. Since they are a large organization, we know they will have large amounts of bandwidth and it will be almost impossible for us to take them down from a volume based Denial of Service attack. 
+From our scouting we have observed that our target's storefront is deployed from an Apache web server, fortunately from our research we also know that Apache has a known DoS vulnerability at their application layer. 
+
+We have included a Slowloris attack script in your box of tools that will cause a Denial of Service attack on our target's Apache Servers. The tool works a little bit like this:
+
+1. Slowloris will start by making lots of HTTP requests to the target.
+2. Slowloris will then send headers periodically, about ~15 seconds to keeping the socket connection occupied.
+3. Slow loris will not close the connection unless the server does so. If the server closes a connection, Slowloris create a new one and continue doing the same thing.
+
+This exhaust the server’s thread pool and the server will be unable to reply to other people.
+
+Usually servers serve clients with slow internet connections, such as cellphones with poor signal, so they will leave the connections open on one of the server's sockets. After the attacker's get request has been acknowledged they will leave the socket open to receive the header of the message and this header will trickle... slowly... every character... every 15 or 30 seconds. Let’s say that the message is “hello friend”, in a slowloris scenario it will be sent and received as:
+ 
+h…………e…………l…………l…………o……………………………………………………………
+f…………r…………i…………e…………n…………d…………………………………………………
+
+The server does have a timeout so lets say if the header message takes about 30 – 45 seconds to transfer fully, but the server has a time out of 20 seconds, the server will automatically close that socket to allow somebody to listen in, however during a slowloris attack this will the slowloris script will continuously produce more requests and send out more headers.  
+
+So let’s give this a try, and turn this into a learning opportunity and write your first HTTP Get Request.
+

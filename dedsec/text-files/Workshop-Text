@@ -1,0 +1,83 @@
+sudo su
+
+notmuch setup
+
+notmuch new
+
+#start up VIM
+vim
+
+#Press esc
+:NotMuch
+
+#Alternatively you can type
+vim -c ':NotMuch'
+
+#Navigate with the arrow keys and Press enter once you select new messages
+
+# Read your new mission
+
+Greetings new blood,
+We have been seen the great work that you have done over the past few years and we are impressed.
+We are glad you have taken on our offer to join our family in the fight against evil, however you must prove to the rest of us
+that you are worthy of being one of us. We are DedSec, you could say that we are the good guys; even though our targets do not think so.
+What I'm about to tell you is top secret. A conspiracy bigger than all of us. There's a powerful group of people out there that are 
+secretly running the world. I'm talking about the guys no one knows about, the ones that are invisible. 
+The top 1% of the top 1%, the guys that play God without permission. 
+We are fighting on the side of the people and protect them against evil organizations.
+DedSec does not take kindly to organizations that take advantage of the little people.
+
+Our latest intel has uncovered a secret plot by the multi-billion dollar company Epic Games. We learned that they are currently being bankrolled by foreign powers to install
+some nasty spyware on their customer's machines and in turn they are giving their customer's information and computer's access to these foreign powers.
+
+It's your job to take down Epic Game's storefront to prevent people from continuing to fall for their predatory practices.
+
+This will definitely hurt them where it matters.
+
+We have included the necessary tools for you to get this job done.  
+
+Your next step is to go to this directory /home/attacker/slowloris so make sure you write this directory down somewhere. 
+On that directory there is a README file that you must read before you engage.
+
+But before you do, make sure you leave your vim console safely.
+
+1. Press the esc button
+2. Type :q and press enter
+
+See you on the other side.
+Dade
+
+~We do not forgive,
+~We do not compromise.
+~We are DedSec
+~Expect us
+ 
+
+
+
+
+
+
+
+Operation Slowloris:
+
+Our intention is to take down their website to prevent other's for falling victim to their spyware. Since they are a large organization
+we know that they have a huge amount of bandwidth limit and it will be almost impossible 
+From our scouting we have observed that our target's storefront is deployed from an Apache web server, fortunately from our research we also know that Apache has a known DoS vulnerability at their application layer. 
+
+We have included a Slowloris attack tool in your box of tools that will cause a Denial of Service attack on our target's Apache Servers. The tool works a little bit like this:
+
+1. Slowloris will start by making lots of HTTP requests to the target.
+2. Slowloris will then send headers periodically, about ~15 seconds to keeping the socket connection occupied.
+3. Slow loris will not close the connection unless the server does so. If the server closes a connection, Slowloris create a new one and continue doing the same thing.
+
+This exhaust the server’s thread pool and the server will be unable to reply to other people.
+
+Usually servers serve clients with slow internet connections, such as cellphones with poor signal, so they will leave the connections open on one of the servers sockets. After ther get request has been acknowledged they will leave the socket open to receive the header of the message and this header can trickle every character. Let’s say that the message is “hello friend”, in a slowloris scenario it will be read as: 
+h…………e…………l…………l…………o……………………………………………………………
+f…………r…………i…………e…………n…………d…………………………………………………
+
+The server does have a time out so lets say if the header message takes about 30 – 45 seconds to transfer fully, but the server has a time out of 20 seconds, the server will automatically close that socket to allow somebody to listen in, however during a slowloris attack this will the slowloris script will continuously produce more requests and send out more headers.  
+
+So let’s give this a try, and turn this into a learning opportunity and write your first HTTP Get Request.
+
