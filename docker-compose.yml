@@ -23,7 +23,7 @@ services:
                 networks: 
                         - frontend
                         - backend
-                          #- dedsec
+                        - dedsec
                 ports: 
                         - "80:80"
                 volumes: 
