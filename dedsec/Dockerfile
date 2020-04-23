@@ -68,12 +68,12 @@ CMD ["/usr/sbin/sshd", "-D"]
 #RUN echo '[ ! -z "$TERM" -a -r /etc/motd ] && cat /etc/issue && cat /etc/motd'  >> /etc/bash.bashrc
 
 # These files are only pertaining to the slowloris workshop
-
-RUN mkdir /home/samsepi0l/slowloris
+WORKDIR /home/samsepi0l
+RUN mkdir slowloris
 COPY ./slowloris/ /home/samsepi0l/slowloris/
 COPY ./text-files/README /home/samsepi0l/slowloris/
 RUN chown samsepi0l:dedsec -R /home/samsepi0l/slowloris/
-RUN mkdir /home/samsepi0l/mail/
+RUN mkdir mail/
 COPY ./text-files/hellofriend.eml /home/samsepi0l/mail/
 RUN chown samsepi0l:dedsec -R /home/samsepi0l/mail/
 
