@@ -49,7 +49,6 @@ services:
         frontend:
           ipv4_address: "172.193.127.3"
         backend:
-        dedsec:
       ports: 
         - "80"
       volumes: 
@@ -65,9 +64,10 @@ services:
       networks:
         dedsec:
           ipv4_address: "172.193.128.2"
+        frontend:
 
       ports:
-        - "8822:22"
+        - "22"
  
 volumes:
   public_html:
