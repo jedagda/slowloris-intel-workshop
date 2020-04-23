@@ -48,7 +48,7 @@ RUN usermod -g dedsec samsepi0l
 RUN echo 'samsepi0l:dedsecrox!' | chpasswd
 
 
-RUN sudo -u samsepiol vim-addon-manager install notmuch
+RUN sudo -u samsepi0l vim-addon-manager install notmuch
 
 # Add and install lolcat for a colorful RGB experience
 COPY lolcat-master /samsepi0l/
