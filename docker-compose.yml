@@ -34,8 +34,8 @@ services:
 
     apache: 
       build: './apache/'
-      depends_on: 
-        - php
+      #depends_on: 
+      #  - php
       hostname: hecticgames.com
       networks: 
         frontend:
