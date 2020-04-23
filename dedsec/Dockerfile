@@ -39,7 +39,7 @@ RUN apt-get install -y notmuch notmuch-vim net-tools nmap ipython ipython3 iputi
 RUN vim-addon-manager install notmuch
 RUN mkdir /var/run/sshd
 RUN groupadd deadsec
-RUN useradd -ms /bin/bash -g samsepi0l deadsec
+RUN useradd -ms /bin/bash -g deadsec samsepi0l
 RUN echo 'samsepi0l:dedsecrox!' | chpasswd
 
 
