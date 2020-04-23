@@ -30,7 +30,9 @@ services:
       volumes:
         - "/var/run/docker.sock:/var/run/docker.sock:ro"
       networks: 
-        - frontend
+        frontend:
+          ipv4_address: "172.193.127.2"
+
 
     apache: 
       build: './apache/'
@@ -40,7 +42,7 @@ services:
       labels:
         - "traefik.enable=true"
         - "traefik.http.routers.hecticgames.entrypoints=web"
-        - "traefik.http.routers.hecticgames.rule=Host(`hecticgames.localhost`)"
+        - "traefik.http.routers.hecticgames.rule=Host(`hecticgames.com`)"
         - "traefik.http.routers.hecticgames.service=hecticgames"
         - "traefik.http.services.hecticgames.loadbalancer.server.port=80"
       networks: 
