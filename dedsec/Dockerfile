@@ -42,7 +42,7 @@ RUN vim-addon-manager install notmuch
 RUN mkdir /var/run/sshd
 RUN groupadd dedsec
 RUN useradd -ms /bin/bash -g dedsec samsepi0l
-RUN echo "%dedsec         ALL : (ALL) ALL" >> /etc/sudoers
+#RUN echo "%dedsec         ALL : (ALL) ALL" >> /etc/sudoers
 RUN echo 'samsepi0l:dedsecrox!' | chpasswd
 
 
