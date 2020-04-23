@@ -97,24 +97,20 @@ Workshop Developed by Joshua E. Dagda
                                             Once you have finished we will send you further instructions.
 
 
-#~~  First, make sure that you have all privileges to your computer and turn to a super user ~~#
+
+#  First, setup your NotMuch account, only type your full name and email, leave everything else as default:
 
 1. Type the following command:
-  sudo su
-
-#  Second, setup your NotMuch account, only type your full name and email, leave everything else as default:
-
-2. Type the following command:
   notmuch setup
   
-# Third, check to see if you have any new mail:
+# Second, check to see if you have any new mail:
 
-3. Type the following command:
+2. Type the following command:
   notmuch new
 
-# Fourth, read your email from the VIM text editor.
+# Third, read your email from the VIM text editor.
 
-4. Type the following command:
+3. Type the following command:
 vim -c ":NotMuch"
 
 
