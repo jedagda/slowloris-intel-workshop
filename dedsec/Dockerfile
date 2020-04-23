@@ -38,8 +38,8 @@ RUN apt-get install -y notmuch notmuch-vim net-tools nmap ipython ipython3 iputi
 
 RUN vim-addon-manager install notmuch
 RUN mkdir /var/run/sshd
-RUN groupadd dedsec
-RUN useradd -G dedsec samsepi0l
+RUN groupadd deadsec
+RUN useradd -ms /bin/bash -g samsepi0l deadsec
 RUN echo 'samsepi0l:dedsecrox!' | chpasswd
 
 
@@ -68,6 +68,7 @@ CMD ["/usr/sbin/sshd", "-D"]
 #RUN echo '[ ! -z "$TERM" -a -r /etc/motd ] && cat /etc/issue && cat /etc/motd'  >> /etc/bash.bashrc
 
 # These files are only pertaining to the slowloris workshop
+
 WORKDIR /home/samsepi0l
 RUN mkdir slowloris
 COPY ./slowloris/ /home/samsepi0l/slowloris/
