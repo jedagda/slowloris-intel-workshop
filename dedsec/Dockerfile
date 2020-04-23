@@ -37,8 +37,8 @@ RUN apt-get update
 RUN apt-get install -y apt-utils python3 
 RUN apt-get upgrade -y python-requests
 RUN apt-get install -y sudo lvm2 openssh-server vim notmuch notmuch-vim net-tools nmap ipython ipython3 iputils-ping 
+RUN echo "Set disable_coredump false" >> /etc/sudoers.conf
 
-RUN vim-addon-manager install notmuch
 RUN mkdir /var/run/sshd
 RUN groupadd dedsec
 RUN useradd -ms /bin/bash -g dedsec samsepi0l
@@ -47,6 +47,8 @@ RUN usermod -g dedsec samsepi0l
 #RUN echo "%dedsec         ALL : (ALL) ALL" >> /etc/sudoers
 RUN echo 'samsepi0l:dedsecrox!' | chpasswd
 
+
+RUN sudo -u samsepiol vim-addon-manager install notmuch
 
 # Add and install lolcat for a colorful RGB experience
 COPY lolcat-master /samsepi0l/
