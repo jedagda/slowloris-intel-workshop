@@ -39,7 +39,7 @@ RUN apt-get install -y notmuch notmuch-vim net-tools nmap ipython ipython3 iputi
 RUN vim-addon-manager install notmuch
 RUN mkdir /var/run/sshd
 RUN useradd -ms /bin/bash -g sudo samsepi0l
-RUN echo 'samsepi0l:d3ds3cr0x!' | chpasswd
+RUN echo 'samsepi0l:dedsecrox!' | chpasswd
 
 
 # Add and install lolcat for a colorful RGB experience
@@ -71,8 +71,8 @@ CMD ["/usr/sbin/sshd", "-D"]
 RUN mkdir /home/samsepi0l/slowloris
 COPY ./slowloris/ /home/samsepi0l/slowloris/
 COPY ./text-files/README /home/samsepi0l/slowloris/
-RUN mkdir /root/mail/
-COPY ./text-files/hellofriend.eml /root/mail/
+RUN mkdir /home/samsepi0l/mail/
+COPY ./text-files/hellofriend.eml /home/samsepi0l/mail/
 
 
 
