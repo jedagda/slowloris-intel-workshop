@@ -1,19 +1,19 @@
 version: '3.7'
 
 services:
-  # php:
-    #build: './php/'
-    #networks: 
-      #- backend
-      #volumes: 
-        #- type: volume
-#                   source: public_html
-#                   target: ${WEB_DESTINATION_PATH}
-#         environment:
-#                 - DB_NAME=${DB_NAME}
-#                 - DB_USER=${DB_USER}
-#                 - DB_PASSWORD=${DB_PASSWORD}
-#                 - DB_HOST=${DB_HOST}
+    php:
+      build: './php/'
+      networks: 
+        - backend
+      volumes: 
+        - type: volume
+          source: public_html
+          target: ${WEB_DESTINATION_PATH}
+  #    environment:
+  #      - DB_NAME=${DB_NAME}
+  #      - DB_USER=${DB_USER}
+  #      - DB_PASSWORD=${DB_PASSWORD}
+  #      - DB_HOST=${DB_HOST}
     traefik:
       build: './traefik'
       container_name: "traefik"
@@ -34,8 +34,8 @@ services:
 
     apache: 
       build: './apache/'
-      #depends_on: 
-      #  - php
+      depends_on: 
+        - php
       hostname: hecticgames
       labels:
         - "traefik.enable=true"
