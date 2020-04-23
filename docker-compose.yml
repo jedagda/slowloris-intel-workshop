@@ -1,29 +1,46 @@
 version: '3.7'
 
 services:
-        php:
-                build: './php/'
+        # php:
+        #         build: './php/'
+        #         networks: 
+        #                 - backend
+        #         volumes: 
+        #                 - type: volume
+        #                   source: public_html
+        #                   target: ${WEB_DESTINATION_PATH}
+        #         environment:
+        #                 - DB_NAME=${DB_NAME}
+        #                 - DB_USER=${DB_USER}
+        #                 - DB_PASSWORD=${DB_PASSWORD}
+        #                 - DB_HOST=${DB_HOST}
+        traefik:
+                build: './traefik'
+                container_name: "traefik"
+                command:
+                    #- "--log.level=DEBUG"
+                    - "--api.insecure=true"
+                    - "--providers.docker=true"
+                    - "--providers.docker.exposedbydefault=false"
+                    - "--entrypoints.web.address=:80"
+                    - "--providers.docker.network=traefik"
+                ports:
+                    - "80:80"
+                    #- "8080:8080"
+                volumes:
+                    - "/var/run/docker.sock:/var/run/docker.sock:ro"
                 networks: 
-                        - backend
-                volumes: 
-                        - type: volume
-                          source: public_html
-                          target: ${WEB_DESTINATION_PATH}
-                environment:
-                        - DB_NAME=${DB_NAME}
-                        - DB_USER=${DB_USER}
-                        - DB_PASSWORD=${DB_PASSWORD}
-                        - DB_HOST=${DB_HOST}
-
+                        - frontend
         apache: 
                 build: './apache/'
                 depends_on: 
                         - php
                 hostname: hecticgames.com
                 networks: 
-                        - frontend
-                        - backend
-                        - dedsec
+                        frontend:
+                                ipv4_address: "172.193.127.3"
+                        # - backend
+                        dedsec:
                 ports: 
                         - "80:80"
                 volumes: 
@@ -36,9 +53,11 @@ services:
                 container_name: samsepi0l 
                 hostname: dedsec
                 networks:
-                        - dedsec
+                        dedsec:
+                                ipv4_address: "172.193.128.2"
+
                 ports:
-                        - "49154:22"
+                        - "8822:22"
  
 volumes:
         public_html:
@@ -50,10 +69,16 @@ volumes:
 
 networks: 
        frontend:
-               driver: bridge
+                driver: bridge
+                ipam:
+                       driver: default
+                config:
+                        - subnet: "172.193.127.0/24"
 
-                       
-       backend:
-               driver: bridge
+
        dedsec:
-               driver: bridge 
+                driver: bridge
+                ipam:
+                        driver: default
+                config:
+                        - subnet: "172.193.128.0/24"
