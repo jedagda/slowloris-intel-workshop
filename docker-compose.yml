@@ -80,7 +80,6 @@ volumes:
 
 networks: 
   frontend:
-    name: hectic_network
     driver: bridge
     ipam:
       driver: default

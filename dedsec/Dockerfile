@@ -36,7 +36,7 @@ RUN apt-get update
 
 RUN apt-get install -y apt-utils python3 
 RUN apt-get upgrade -y python-requests
-RUN apt-get install -y sudo lvm2 openssh-server vim notmuch notmuch-vim net-tools nmap ipython ipython3 iputils-ping 
+RUN apt-get install -y sudo lvm2 openssh-server vim notmuch notmuch-vim net-tools nmap ipython ipython3 iputils-ping  python3-requests
 RUN echo "Set disable_coredump false" >> /etc/sudoers.conf
 
 RUN mkdir /var/run/sshd
