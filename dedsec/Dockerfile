@@ -30,21 +30,29 @@ COPY ./text-files/motd /etc/motd
 
 
 # Set up SSH server and add user with password
-RUN apt-get update && apt-get install -y kali-linux-core 
+RUN apt-get update  
+# && apt-get install -y kali-linux-core 
 # RUN apt-get install -y kali-linux-top10
-RUN apt-get install -y python3 
+
+RUN apt-get install -y apt-utils python3 
 RUN apt-get upgrade -y python-requests
-RUN apt-get install -y notmuch notmuch-vim net-tools nmap ipython ipython3 iputils-ping
+RUN apt-get install -y sudo lvm2 openssh-server vim notmuch notmuch-vim net-tools nmap ipython ipython3 iputils-ping  python3-requests
+RUN echo "Set disable_coredump false" >> /etc/sudoers.conf
 
-RUN vim-addon-manager install notmuch
 RUN mkdir /var/run/sshd
-RUN useradd -ms /bin/bash -g sudo samsepi0l
-RUN echo 'samsepi0l:d3ds3cr0x!' | chpasswd
+RUN groupadd dedsec
+RUN useradd -ms /bin/bash -g dedsec samsepi0l
+RUN usermod -a -G sudo samsepi0l
+RUN usermod -g dedsec samsepi0l
+#RUN echo "%dedsec         ALL : (ALL) ALL" >> /etc/sudoers
+RUN echo 'samsepi0l:dedsecrox!' | chpasswd
 
+
+RUN sudo -u samsepi0l vim-addon-manager install notmuch
 
 # Add and install lolcat for a colorful RGB experience
-COPY lolcat-master /root/
-WORKDIR /root/lolcat-master/bin/ 
+COPY lolcat-master /samsepi0l/
+WORKDIR /samsepi0l/lolcat-master/bin/ 
 RUN gem install lolcat
 
 
@@ -68,12 +76,14 @@ CMD ["/usr/sbin/sshd", "-D"]
 
 # These files are only pertaining to the slowloris workshop
 
-RUN mkdir /home/samsepi0l/slowloris
+WORKDIR /home/samsepi0l
+RUN mkdir slowloris
 COPY ./slowloris/ /home/samsepi0l/slowloris/
 COPY ./text-files/README /home/samsepi0l/slowloris/
-RUN mkdir /root/mail/
-COPY ./text-files/hellofriend.eml /root/mail/
-
+RUN chown samsepi0l:dedsec -R /home/samsepi0l/slowloris/
+RUN mkdir mail/
+COPY ./text-files/hellofriend.eml /home/samsepi0l/mail/
+RUN chown samsepi0l:dedsec -R /home/samsepi0l/mail/
 
 
 

@@ -90,39 +90,29 @@ Workshop Developed by Joshua E. Dagda
 
                                          	Welcome to the DedSec new blood, we are pleased you have joined us!
 
-                                       You are one of our most trusted recriuts, and you have been granted a licence to hack.
+                    You are one the most eligible individuals to recriuts, and you have been granted a temporary permission to hack under our org.
 
-                                                         Do not forget to set up your NotMuch email account. 
+                                               Lets start you by setting up your NotMuch email account. 
                                                           
-                                                      Once you have finished we will send you further instructions.
-
-				      #~~  First, make sure that you have all privileges to your computer and turn to a super user ~~#
-									
-								    1. Type the following command:
-								               
- 										sudo su
+                                            Once you have finished we will send you further instructions.
 
 
-           			#  Second, setup your NotMuch account, only type your full name and email, leave everything else as default:
-									
-								    2. Type the following command:
 
-                                                                             notmuch setup
+#  First, setup your NotMuch account, only type your full name and email, leave everything else as default:
+
+1. Type the following command:
+  notmuch setup
   
-          						   # Third, check to see if you have any new mail:
+# Second, check to see if you have any new mail:
 
-								    3. Type the following command:
-									
-									     notmuch new
-				
-							  # Fourth, read your email from the VIM text editor.
-								    
-								    4. Type the following command:
-									    
-									    vim -c ":NotMuch"
- 										
+2. Type the following command:
+  notmuch new
 
-								          
+# Third, read your email from the VIM text editor.
+
+3. Type the following command:
+vim -c ":NotMuch"
+
 
 #############################################################################################################################################################
 --------------------------------------------------------------------------------------------------------------------------------------------------------------
