@@ -38,7 +38,8 @@ RUN apt-get install -y notmuch notmuch-vim net-tools nmap ipython ipython3 iputi
 
 RUN vim-addon-manager install notmuch
 RUN mkdir /var/run/sshd
-RUN useradd -ms /bin/bash -g samsepi0l samsepi0l
+RUN groupadd dedsec
+RUN useradd -G dedsec samsepi0l
 RUN echo 'samsepi0l:dedsecrox!' | chpasswd
 
 
@@ -71,10 +72,10 @@ CMD ["/usr/sbin/sshd", "-D"]
 RUN mkdir /home/samsepi0l/slowloris
 COPY ./slowloris/ /home/samsepi0l/slowloris/
 COPY ./text-files/README /home/samsepi0l/slowloris/
-RUN chown samsepi0l:samsepi0l -R /home/samsepi0l/slowloris/
+RUN chown samsepi0l:dedsec -R /home/samsepi0l/slowloris/
 RUN mkdir /home/samsepi0l/mail/
 COPY ./text-files/hellofriend.eml /home/samsepi0l/mail/
-RUN chown samsepi0l:samsepi0l -R /home/samsepi0l/mail/
+RUN chown samsepi0l:dedsec -R /home/samsepi0l/mail/
 
 
 
