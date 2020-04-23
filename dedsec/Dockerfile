@@ -33,9 +33,10 @@ COPY ./text-files/motd /etc/motd
 RUN apt-get update  
 # && apt-get install -y kali-linux-core 
 # RUN apt-get install -y kali-linux-top10
-RUN apt-get install -y python3 
+
+RUN apt-get install -y apt-utils python3 
 RUN apt-get upgrade -y python-requests
-RUN apt-get install -y sudo lvm2 openssl-server vim notmuch notmuch-vim net-tools nmap ipython ipython3 iputils-ping 
+RUN apt-get install -y sudo lvm2 openssh-server vim notmuch notmuch-vim net-tools nmap ipython ipython3 iputils-ping 
 
 RUN vim-addon-manager install notmuch
 RUN mkdir /var/run/sshd
