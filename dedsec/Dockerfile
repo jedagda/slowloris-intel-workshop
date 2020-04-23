@@ -41,7 +41,9 @@ RUN apt-get install -y sudo lvm2 openssh-server vim notmuch notmuch-vim net-tool
 RUN vim-addon-manager install notmuch
 RUN mkdir /var/run/sshd
 RUN groupadd dedsec
-RUN useradd -ms /bin/bash -g sudo,dedsec samsepi0l
+RUN useradd -ms /bin/bash -g dedsec samsepi0l
+RUN usermod -a -G sudo samsepi0l
+RUN usermod -g dedsec samsepi0l
 #RUN echo "%dedsec         ALL : (ALL) ALL" >> /etc/sudoers
 RUN echo 'samsepi0l:dedsecrox!' | chpasswd
 
